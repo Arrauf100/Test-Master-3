@@ -13,6 +13,7 @@ Baut Rate (9600)
 #include <Arduino.h>
 #include <HardwareSerial.h>
 #include <SoftwareSerial.h>
+#include <errOTA.h>
 
 #define RXD1 16 // RX untuk Slave 1
 #define TXD1 17 // TX untuk Slave 1
@@ -82,10 +83,14 @@ void setup()
   Slave2.begin(9600, SERIAL_8N1, RXD2, TXD2);
   Slave3.begin(9600);
   Serial.println("Master Ready...");
+  setupOTA();
 }
 
 void loop()
 {
+  
+  server.handleClient();
+  ElegantOTA.loop();
   if (Serial.available())
   {
     String command = Serial.readStringUntil('\n');
