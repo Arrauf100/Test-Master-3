@@ -77,7 +77,7 @@ void setBrightness(int slaveNumber, int brightness)
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Slave1.begin(9600, SERIAL_8N1, RXD1, TXD1);
   Slave2.begin(9600, SERIAL_8N1, RXD2, TXD2);
   Slave3.begin(9600);
